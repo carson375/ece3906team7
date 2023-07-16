@@ -1,115 +1,91 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import * as React from 'react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Button, Box, Paper, Grid, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+
+// function TabInfo() {
+//   <Head>
+//     <title>Create Next App</title>
+//     <link rel="icon" href="/favicon.ico" />
+//   </Head>
+// }
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#999999',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: '#00ff00',
+      dark: '#0fff00',
+      light: '01fff0',
+    },
+  },
+});
+
+const loginMessage = 'Log in to your user profile to view previous flight paths, and data sets. If you do not have a user profile you can create an account through the login page.';
+const flightPathMessage = 'Navigate to the flight path page to enter the route the drone will follow. The map is interactive, so enter checkpoints, barriers, and the path into the user interface. After the flight path has been established click the submit button to send the data to the drone.';
+const heatMapMessage = 'After the drone has finished the desired flight path navigate to the heat map page to view the data. On the heat map page the data can be viewed in a visual or csv format.';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        footer img {
-          margin-left: 0.5rem;
-        }
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-decoration: none;
-          color: inherit;
-        }
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ flexGrow: 1 }} p={6} paddingBottom={2}>
+        <Grid container spacing={2}>
+          <Grid item xs={6} md={4}>
+            <img alt="my image" src="./teamPhoto.jpg" />
+          </Grid>
+          <Grid item xs={6} md={8} height={291}>
+            <Item height={291}>
+              <Typography variant="h4">
+                WiFinder Project
+              </Typography>
+              <Typography variant="h6">
+                From Left to Right Developed By:
+              </Typography>
+              <br /><br />
+              <Typography variant="h6">
+                Zach Goodwin, Parker Carson, Kevin Wenger, Ryan McKinley, & Kaiden McGraw
+              </Typography>
+              <Typography height={111}> </Typography>
+            </Item>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box sx={{ flexGrow: 1 }} p={6} paddingTop={2}>
+        <Grid container spacing={2}>
+          <Grid item xs={6} md={4}>
+            <Item>
+              <Typography variant='h6'>Login Page</Typography>
+              <br />
+              <Typography>{loginMessage}</Typography>
+              <Typography height={178}> </Typography>
+            </Item>
+          </Grid>
+          <Grid item xs={6} md={4}>
+            <Item>
+              <Typography variant='h6'>Flight Path Page</Typography>
+              <br />
+              <Typography>{flightPathMessage}</Typography>
+              <Typography height={130}></Typography>
+            </Item>
+          </Grid>
+          <Grid item xs={6} md={4}>
+            <Item>
+            <Typography variant='h6'>Heat Map Page</Typography>
+              <br />
+              <Typography>{heatMapMessage}</Typography>
+              <Typography height={178}></Typography>
+            </Item>
+          </Grid>
+        </Grid>
+      </Box>
+    </ThemeProvider>
   )
 }
